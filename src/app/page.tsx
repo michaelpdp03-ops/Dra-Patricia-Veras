@@ -86,6 +86,21 @@ const testimonials = [
   { name: "Pedro N.", initials: "PN", procedure: "Bypass Gástrico", quote: "Profesionalismo de primer nivel. Las instalaciones, su trato humano y los resultados obtenidos superaron todas mis expectativas." },
 ];
 
+const faqs = [
+  { q: "¿Qué es la cirugía bariátrica?", a: "Es un conjunto de procedimientos quirúrgicos diseñados para ayudar a la pérdida de peso en pacientes con obesidad, mediante la reducción del tamaño del estómago y/o la modificación del proceso digestivo, favoreciendo además el control de enfermedades asociadas." },
+  { q: "¿Quiénes son candidatos para cirugía bariátrica?", a: "Generalmente, personas con obesidad grado II o III, o con obesidad asociada a enfermedades como diabetes, hipertensión, apnea del sueño, entre otras, que no han logrado bajar de peso con otros métodos." },
+  { q: "¿Qué tipos de cirugía bariátrica existen?", a: "Las más comunes son la manga gástrica y el bypass gástrico. El tipo de cirugía se elige de manera individual, según la condición médica y las necesidades de cada paciente." },
+  { q: "¿La cirugía es segura?", a: "Sí. Es un procedimiento seguro cuando se realiza por cirujanos especializados y en centros adecuados. Como toda cirugía, conlleva riesgos, los cuales se explican detalladamente antes del procedimiento." },
+  { q: "¿Cuánto peso se puede perder?", a: "La pérdida de peso varía según el tipo de cirugía y el compromiso del paciente con los cambios de estilo de vida. En general, se logra una pérdida significativa y sostenida a largo plazo." },
+  { q: "¿Cuándo veré los resultados?", a: "Los resultados deseados se logran a ver a partir de 6 meses a 1 año. Pero todo depende del paciente; hay pacientes que lo ven desde antes." },
+  { q: "¿La cirugía cura la obesidad?", a: "La cirugía es una herramienta, pero no una cura definitiva. Requiere cambios permanentes en la alimentación, actividad física y seguimiento médico continuo." },
+  { q: "¿Cómo es la recuperación?", a: "La mayoría de los pacientes se reincorpora a sus actividades habituales en pocas semanas, siguiendo las indicaciones médicas y nutricionales." },
+  { q: "¿Necesitaré seguimiento médico después de la cirugía?", a: "Sí. El seguimiento es fundamental para asegurar una adecuada pérdida de peso, prevenir deficiencias nutricionales y mantener resultados a largo plazo. Los primeros 21 días los encuentros serán semanales; después se ajustan según la evolución del paciente." },
+  { q: "¿Tendré dolor después de la cirugía?", a: "Es normal presentar molestias en los primeros días. Sin embargo, el dolor suele ser leve y se controla eficazmente con medicamentos analgésicos indicados por el equipo médico. La mayoría de los pacientes refiere que el dolor es tolerable y mejora progresivamente." },
+  { q: "¿Puedo recuperar el peso perdido?", a: "Es posible si no se siguen las recomendaciones médicas y nutricionales. El compromiso del paciente es clave para el éxito del tratamiento." },
+  { q: "¿Cuánto cuesta la cirugía y qué incluye?", a: "El costo de la cirugía se discute con el paciente en la consulta. Generalmente incluye: cirugía, internamiento, materiales a utilizar, anestesia y primeras consultas postquirúrgicas." },
+];
+
 const videoLabels = [
   { 
     title: "Prevención del Cáncer", 
@@ -132,6 +147,7 @@ function Star() {
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Stats counters
   const patients = useCountUp(2500, 2000);
@@ -182,6 +198,7 @@ export default function Home() {
     { href: "#about", label: "Nosotros" },
     { href: "#services", label: "Servicios" },
     { href: "#gallery", label: "Galería" },
+    { href: "#faq", label: "FAQ" },
     { href: "#contact", label: "Contacto" },
   ];
 
@@ -251,14 +268,20 @@ export default function Home() {
             Cirujana General y Laparoscópica
           </p>
           <h1 className="heading-xl">
-            Transformando Vidas <br /> a Través de tu Salud
+            <span className="text-gradient">Transformando Vidas</span>
+            <br />a Través de tu Salud
           </h1>
           <p>
             Experiencia, precisión y tecnología de vanguardia para brindarte el cuidado quirúrgico que mereces.
           </p>
-          <button onClick={handleCTA} className="btn-primary hero-cta">
-            Agenda tu Consulta
-          </button>
+          <div className="hero-cta-group">
+            <button onClick={handleCTA} className="btn-primary hero-cta">
+              Agenda tu Consulta
+            </button>
+            <a href="#about" className="btn-outline">
+              Conoce más
+            </a>
+          </div>
         </div>
 
         <div className="scroll-indicator" aria-hidden="true">
@@ -292,10 +315,10 @@ export default function Home() {
             <h2 id="about-heading" className="heading-lg">Conoce a la Dra. Patricia Veras</h2>
             <div className="section-divider section-divider-left" />
             <p className="text-body about-paragraph">
-              Dedicada a la excelencia clínica, la Dra. Patricia Veras combina la última tecnología quirúrgica con un enfoque humano para diseñar procedimientos personalizados que restauran la salud metabólica de cada paciente.
+              Doctora en Medicina egresada del Instituto Tecnológico de Santo Domingo (INTEC), graduada <strong>Summa Cum Laude</strong>. Realizó su especialidad en Cirugía General en el Hospital Salvador B. Gautier, donde también se desempeñó como <strong>Jefa de Residentes</strong>. Posteriormente completó su formación en Cirugía Bariátrica en el Hospital Salvador B. Gautier.
             </p>
             <p className="text-body about-paragraph about-paragraph-last">
-              Nuestro enfoque se centra en la salud funcional a largo plazo, brindando una experiencia segura y profundamente profesional con atención integral y seguimiento continuo.
+              Cuenta con un Diplomado en Investigación en Salud por la Universidad Iberoamericana (UNIBE). Su práctica se caracteriza por el compromiso con la excelencia, la actualización continua y una atención integral centrada en el bienestar del paciente.
             </p>
             <ul className="about-services-list">
               {['Cirugía Bariátrica', 'Cirugía General y Laparoscópica', 'Manejo del Reflujo'].map(item => (
@@ -305,6 +328,19 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <div className="credential-badges">
+              {[
+                'INTEC — Summa Cum Laude',
+                'H. Salvador B. Gautier',
+                'Jefa de Residentes',
+                'UNIBE — Investigación en Salud',
+              ].map(label => (
+                <span key={label} className="credential-badge">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -354,9 +390,7 @@ export default function Home() {
       </section>
 
       {/* ===== VIDEO GALLERY ===== */}
-      <section className="section-padding" style={{ position: 'relative', overflow: 'hidden' }} aria-labelledby="videos-heading">
-        <div className="floating-decor" style={{ width: '400px', height: '400px', top: '-10%', right: '-10%' }} aria-hidden="true" />
-
+      <section className="section-padding section-dark" aria-labelledby="videos-heading">
         <div className="section-header scroll-reveal">
           <p className="section-subtitle">Salud en Acción</p>
           <h2 id="videos-heading" className="heading-lg">Consejos y Procedimientos</h2>
@@ -405,7 +439,8 @@ export default function Home() {
                 sizes="(max-width: 768px) 100vw, 300px"
               />
               <div className="gallery-overlay">
-                <span>Antes y Después</span>
+                <span className="gallery-overlay-title">Antes y Después</span>
+                <span className="gallery-overlay-sub">Resultado real de paciente</span>
               </div>
             </div>
           ))}
@@ -413,8 +448,7 @@ export default function Home() {
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="section-padding" aria-labelledby="testimonials-heading" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="floating-decor" style={{ width: '350px', height: '350px', bottom: '-10%', left: '-5%' }} aria-hidden="true" />
+      <section className="section-padding section-dark" aria-labelledby="testimonials-heading">
 
         <div className="section-header scroll-reveal">
           <p className="section-subtitle">Voces de Confianza</p>
@@ -438,6 +472,51 @@ export default function Home() {
               </div>
               <div className="testimonial-stars" aria-label="5 estrellas">
                 {[...Array(5)].map((_, i) => <Star key={i} />)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== FAQ ===== */}
+      <section id="faq" className="section-padding" style={{ backgroundColor: 'var(--secondary-bg)' }} aria-labelledby="faq-heading">
+        <div className="section-header scroll-reveal">
+          <p className="section-subtitle">Resolvemos tus Dudas</p>
+          <h2 id="faq-heading" className="heading-lg">Preguntas Frecuentes</h2>
+          <div className="section-divider" />
+          <p className="text-body section-desc">
+            Todo lo que necesitas saber sobre la cirugía bariátrica y el proceso de atención con la Dra. Patricia Veras.
+          </p>
+        </div>
+
+        <div className="faq-list">
+          {faqs.map((item, idx) => (
+            <div
+              key={idx}
+              className={`faq-item scroll-reveal stagger-${Math.min(idx + 1, 4)}`}
+            >
+              <button
+                className={`faq-question ${openFaq === idx ? 'open' : ''}`}
+                onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                aria-expanded={openFaq === idx}
+                aria-controls={`faq-answer-${idx}`}
+              >
+                <span>{item.q}</span>
+                <svg
+                  className="faq-chevron"
+                  width="20" height="20" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="2.5"
+                  strokeLinecap="round" strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              <div
+                id={`faq-answer-${idx}`}
+                className={`faq-answer ${openFaq === idx ? 'open' : ''}`}
+              >
+                <p>{item.a}</p>
               </div>
             </div>
           ))}
@@ -586,6 +665,7 @@ export default function Home() {
         <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
         </svg>
+        <span className="whatsapp-label">Escríbenos</span>
       </a>
     </main>
   );

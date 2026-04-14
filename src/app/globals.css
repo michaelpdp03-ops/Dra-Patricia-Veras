@@ -150,6 +150,13 @@ a {
   line-height: 1.7;
 }
 
+.text-gradient {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* ===== BUTTONS ===== */
 .btn-primary {
   background-color: var(--primary-gold);
@@ -427,6 +434,36 @@ a {
   padding: 14px 36px;
 }
 
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  color: white;
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: white;
+  transform: translateY(-2px);
+}
+
 @keyframes pulse-down {
   0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
   50% { transform: translateX(-50%) translateY(10px); opacity: 1; }
@@ -519,6 +556,38 @@ a {
   font-size: clamp(0.9rem, 1.5vw, 1.05rem);
 }
 
+.credential-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.credential-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(26, 54, 93, 0.05);
+  border: 1px solid rgba(203, 170, 92, 0.35);
+  border-radius: 100px;
+  padding: 0.38rem 0.85rem;
+  font-size: 0.77rem;
+  font-weight: 600;
+  color: var(--primary-deep-blue);
+  transition: var(--transition-smooth);
+  cursor: default;
+}
+
+.credential-badge:hover {
+  background: rgba(203, 170, 92, 0.1);
+  border-color: var(--primary-gold);
+}
+
+.credential-badge svg {
+  color: var(--primary-gold);
+  flex-shrink: 0;
+}
+
 /* ===== STATS BAR ===== */
 .stats-section {
   background: var(--primary-deep-blue);
@@ -567,6 +636,40 @@ a {
   margin-top: 0.5rem;
 }
 
+/* ===== SECTION DARK VARIANT ===== */
+.section-dark {
+  background: var(--primary-deep-blue);
+  color: white;
+}
+
+.section-dark .section-subtitle { color: var(--primary-gold); }
+.section-dark .heading-lg { color: white; }
+.section-dark .section-desc { color: rgba(255, 255, 255, 0.72); }
+.section-dark .section-divider { background: var(--gold-gradient); }
+
+.section-dark .card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-dark .card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.section-dark .card:hover::after {
+  border-color: rgba(203, 170, 92, 0.5);
+}
+
+/* Dark video labels */
+.section-dark .video-label h4 { color: white; }
+.section-dark .video-desc { color: rgba(255, 255, 255, 0.62); }
+
+/* Dark testimonial text */
+.section-dark .testimonial-text { color: rgba(255, 255, 255, 0.88); }
+.section-dark .author-info strong { color: white; }
+.section-dark .author-info span { color: rgba(255, 255, 255, 0.58); }
+
 /* ===== SERVICES ===== */
 .services-grid {
   display: grid;
@@ -590,6 +693,12 @@ a {
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.25rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 10px 28px rgba(203, 170, 92, 0.55);
 }
 
 .service-card h4 {
@@ -655,15 +764,15 @@ a {
 /* ===== GALLERY (ANTES/DESPUÉS) ===== */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  max-width: var(--section-max-width);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 860px;
   margin: 0 auto;
 }
 
 .gallery-item {
   position: relative;
-  aspect-ratio: 1/1;
+  aspect-ratio: 3/4;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -672,23 +781,41 @@ a {
 }
 
 .gallery-item:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .gallery-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 15px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.25) 45%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 18px;
   color: white;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-.gallery-overlay span {
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay-title {
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  display: block;
+}
+
+.gallery-overlay-sub {
+  display: block;
+  color: var(--primary-gold);
+  font-size: 0.72rem;
+  margin-top: 0.3rem;
+  letter-spacing: 0.5px;
 }
 
 /* ===== TESTIMONIALS ===== */
@@ -833,27 +960,36 @@ a {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  width: 56px;
-  height: 56px;
   background: #25D366;
-  border-radius: 50%;
+  border-radius: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  gap: 0.5rem;
+  padding: 12px 20px 12px 16px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
   z-index: 99;
+  color: white;
+  text-decoration: none;
   transition: var(--transition-smooth);
   animation: float-pulse 3s ease-in-out infinite;
 }
 
 .whatsapp-float svg {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.whatsapp-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.65);
 }
 
 /* ===== FOOTER ===== */
@@ -1171,9 +1307,100 @@ a {
   .card:hover { transform: none; box-shadow: var(--shadow-card); }
   .card:hover::after { border-color: transparent; }
   .gallery-item:hover { transform: none; }
+  .gallery-item .gallery-overlay { opacity: 1; }
   .btn-primary:hover { transform: none; }
+  .btn-outline:hover { transform: none; }
   .whatsapp-float { animation: none; }
+  .whatsapp-label { display: none; }
+  .whatsapp-float { padding: 14px; border-radius: 50%; }
   .social-icon:hover { background: transparent; border-color: rgba(255, 255, 255, 0.2); }
+}
+
+/* ================================================================
+   FAQ ACCORDION
+   ================================================================ */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  background: var(--white);
+  border: 1px solid rgba(203, 170, 92, 0.25);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+}
+
+.faq-item:hover {
+  border-color: rgba(203, 170, 92, 0.6);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-inter, sans-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: left;
+  transition: color 0.25s ease;
+}
+
+.faq-question:hover,
+.faq-question.open {
+  color: var(--primary-deep-blue);
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--primary-gold);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-question.open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+}
+
+.faq-answer.open {
+  max-height: 300px;
+}
+
+.faq-answer p {
+  padding: 0 1.5rem 1.25rem;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  border-top: 1px solid rgba(203, 170, 92, 0.15);
+  padding-top: 1rem;
+}
+
+.faq-item:has(.faq-question.open) {
+  background: rgba(26, 54, 93, 0.03);
+  border-color: rgba(203, 170, 92, 0.5);
+}
+
+@media (max-width: 768px) {
+  .faq-question { font-size: 0.92rem; padding: 1rem 1.125rem; }
+  .faq-answer p { padding: 0 1.125rem 1rem; padding-top: 0.875rem; }
 }
 
 /* ================================================================
@@ -1184,6 +1411,6 @@ a {
   .footer-bottom { padding-bottom: max(1.5rem, env(safe-area-inset-bottom)); }
   .whatsapp-float {
     bottom: max(1.5rem, env(safe-area-inset-bottom));
-    right: max(1.5rem, env(safe-area-inset-right));
+    right: max(1rem, env(safe-area-inset-right));
   }
 }
